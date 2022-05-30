@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/PC/mlops-zoomcamp-homework/Homework_02/mlruns/0/077c5999b103442ba736e7593c7262ed/artifacts
+end_time: 1653885725564
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 077c5999b103442ba736e7593c7262ed
+run_uuid: 077c5999b103442ba736e7593c7262ed
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1653885708971
+status: 3
+tags: []
+user_id: PC
