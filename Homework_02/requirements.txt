@@ -7,4 +7,3 @@ hyperopt
 xgboost
 fastparquet
 boto3
-setuptools
