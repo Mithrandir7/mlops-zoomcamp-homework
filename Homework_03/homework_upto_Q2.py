@@ -1,4 +1,3 @@
-from copyreg import pickle
 import pandas as pd
 
 from sklearn.feature_extraction import DictVectorizer
@@ -9,7 +8,6 @@ from prefect.task_runners import SequentialTaskRunner
 from datetime import date
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
-import pickle
 
 @task
 def read_data(path):
@@ -95,26 +93,4 @@ def main(date=None):
     lr, dv = train_model(df_train_processed, categorical).result()
     run_model(df_val_processed, categorical, dv, lr)
 
-    model_save_path = f"./models/model-{date if date is not None else date.today().strftime('%Y-%m-%d')}.bin"
-    dv_save_path = f"./models/dv-{date if date is not None else date.today().strftime('%Y-%m-%d')}.b"
-    with open(model_save_path, 'wb') as f:
-        pickle.dump(lr, f)
-
-    with open(dv_save_path, 'wb') as f:
-        pickle.dump(dv, f)
-
-#main(date="2021-08-15")
-
-from prefect.deployments import DeploymentSpec
-from prefect.orion.schemas.schedules import CronSchedule
-from prefect.flow_runners import SubprocessFlowRunner
-
-DeploymentSpec(
-    flow=main,
-    name="model_training",
-    schedule=CronSchedule(
-        cron="0 9 15 * *",
-        timezone="America/Montevideo"),
-    flow_runner=SubprocessFlowRunner(),
-    tags=["ml"]
-)
+main(date="2021-08-15")

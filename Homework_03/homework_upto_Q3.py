@@ -103,18 +103,4 @@ def main(date=None):
     with open(dv_save_path, 'wb') as f:
         pickle.dump(dv, f)
 
-#main(date="2021-08-15")
-
-from prefect.deployments import DeploymentSpec
-from prefect.orion.schemas.schedules import CronSchedule
-from prefect.flow_runners import SubprocessFlowRunner
-
-DeploymentSpec(
-    flow=main,
-    name="model_training",
-    schedule=CronSchedule(
-        cron="0 9 15 * *",
-        timezone="America/Montevideo"),
-    flow_runner=SubprocessFlowRunner(),
-    tags=["ml"]
-)
+main(date="2021-08-15")
